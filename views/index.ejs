@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html data-theme="<%= theme %>">
+  <head>
+    <title><%- title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('header.ejs') %>
+    <main>
+      <table>
+        <tr>
+          <td class="col-1">ID</td>
+          <td class="col-3">Title</td>
+          <td class="col-4">Description</td>
+          <td class="col-1">Progress</td>
+          <td class="col-2">Sparkline</td>
+          <td class="col-2">Assigned</td>
+          <td class="col-1">Due Date</td>
+        </tr>
+        <% for(var i = 0; i < docs.length; i++) { %>
+          <tr>
+            <form action="edit" method="post" target="no-reload">
+              <td class="col-1"><%= docs[i].id %><input type="hidden" value="<%= docs[i].id %>" name="id" /></td>
+              <td class="col-3 full"><input type="text" value="<%= docs[i].doc.title %>" name="title" onchange="this.form.submit()" /></td>
+              <td class="col-4 full"><input type="text" value="<%= docs[i].doc.description %>" name="description" onchange="this.form.submit()" /></td>
+              <td class="col-1"><input type="text" value="<%= docs[i].doc.progress %>" name="progress" onchange="this.form.submit()" /></td>
+              <td class="col-2"><progress-cont><progress-bar style="width: <%= docs[i].doc.progress %>%;"></progress-bar></progress-cont></td>
+              <td class="col-2"><input class="person-chip" type="text" value="<%= docs[i].doc.assigned %>" name="assigned" onchange="this.form.submit()" /></td>
+              <td class="col-1 full"><input type="date" value="<%= docs[i].doc.date %>" name="date" onchange="this.form.submit()" /></td>
+            </form>
+          </tr>
+        <% } %>
+        <iframe name="no-reload" style="display:none;"></iframe>
+      </table>
+    </main>
+  </body>
+</html>

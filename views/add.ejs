@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%- title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('header.ejs') %>
+    <main>
+      <form action="add" method="post">
+        <label>Title</label>
+        <input type="text" name="title" />
+        <label>Description</label>
+        <textarea name="description"></textarea>
+        <label>Due Date</label>
+        <input type="date" name="date" />
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>

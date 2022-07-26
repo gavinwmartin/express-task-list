@@ -1,0 +1,23 @@
+<header>
+      <h1><%= title %></h1>
+      <div class="btn-container">
+        <a href="/">Home</a>
+        <a href="/add">Add Task</a>
+        <a onclick="themeChange('dark')">Dark</a>
+        <a onclick="themeChange('light')">Light</a>
+      </div>
+    </header>
+    <script>
+      function themeChange(theme) {
+        fetch("/theme", {
+          method: "POST",
+          headers: {'Content-Type': 'application/json'}, 
+          body: JSON.stringify({
+            theme: theme,
+            path: window.location.href
+          })
+        }).then(res => {
+          location.reload()
+        });
+      }
+    </script>
